@@ -1,23 +1,15 @@
-<Configuration status="debug" name="baeldung" packages="">
+<Configuration status="info" name="geek" packages="">
     <Appenders>
-        <Console name="stdout" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p %m%n"/>
-        </Console>
-    </Appenders>
-    <Appenders>
-        <File name="fout" fileName="test.log" append="true">
+        <File name="file" fileName="app.log" append="true">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%nw</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
             </PatternLayout>
         </File>
     </Appenders>
 
     <Loggers>
-        <Logger name="log4j.test.Log4jTest" level="trace">
-            <AppenderRef ref="STDOUT"/>
-        </Logger>
-        <Root level="trace">
-            <AppenderRef ref="fout"/>
+        <Root level="info">
+            <AppenderRef ref="file"/>
         </Root>
     </Loggers>
 

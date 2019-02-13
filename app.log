@@ -1,0 +1,9 @@
+2019-02-13 12:23:55 INFO  Page Object: Homepage
+2019-02-13 12:23:55 INFO  Method: signin(username=gurdeep,password=test)
+2019-02-13 12:23:55 INFO  Page Object: Homepage
+2019-02-13 12:23:55 INFO  Method: getCustomerMessage()
+2019-02-13 12:23:55 INFO  Return Type: String
+2019-02-13 12:23:55 INFO  Page Object: PaymentPage
+2019-02-13 12:23:55 INFO  Method: clickPayByVisa()
+2019-02-13 12:23:55 INFO  Page Object: PaymentPage
+2019-02-13 12:23:55 INFO  Method: enterPaymentDetails(cardNumber=*******,expiryDate=*****,cvv=***)
