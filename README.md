@@ -1,16 +1,30 @@
-# Logging using AspectJ
-> Using AspectJ for retrospective logging in an Automation Test Framework
+<p align="center">
+  <img width="150" height="150" src="icon.jpeg">
+</p>
+
+<h1 align="center">Auto-Logger</h1>
+<h3 align="center">Retrospective Logging using AspectJ</h3>
+
+<div align="center">
+  Using <code>AspectJ</code> for retrospective logging for an Automation Test Framework
+</div>
 
 
-#### Problem
-A automation framework is already in place however it lacks logging, making failing tests really difficult to troubleshoot.
+<div align="center">
+  <sub>Super small demo illustrating some of the stuff I've done around Test Automation :necktie:</sub>
+</div>
 
 
-#### Solution
-Using AspectJ to retrospectively log information such as Class/Method calls and Input/Output parameters.
+###
 
-Let's take the below test as an example:
-```
+
+
+#### Common Usage
+Created a `Test Automation framework`, but forgot to add any meaningful logging?. This is a super small demonstration of how AspectJ can be used to retrospectively log meaningful information.
+
+
+For example, take the below **test**:
+```java
 @Test
     public void showcaseAspectJLogging() {
 
@@ -23,10 +37,10 @@ Let's take the below test as an example:
                 .enterPaymentDetails("1234567", "12/11", "433");
     }
 ```
-This is a Selenium based UI Automation test where the framework is designed using the Page Object Model. Using AspectJ we can log as much or as little information
-we want without having to add log lines to our Page Objects / Methods. Here is an example log for the above test.
+This is a *dummy* UI Automation test for a Page Object Model framework. Using AspectJ, we can log as **much** or as **little** information as we wish without having to actually add any log lines to the Page Objects *(Java methods)*. For example, here is what the logs looks like for the above test
 
-```
+##### Example Log
+```bash
 2019-02-13 12:23:55 INFO  Page Object: Homepage
 2019-02-13 12:23:55 INFO  Method: signin(username=gurdeep,password=test)
 2019-02-13 12:23:55 INFO  Page Object: Homepage
@@ -38,17 +52,14 @@ we want without having to add log lines to our Page Objects / Methods. Here is a
 2019-02-13 12:23:55 INFO  Method: enterPaymentDetails(cardNumber=*******,expiryDate=*****,cvv=***)
 ```
 
-As you can see, you now have a sight of the full journey and what interactions took place e.g. the test attempted to sign in with the username "gurdeep" and password "test".
+As you can see, the logs are verbose enough to clearly illustrate what the test did during execution (*this is where having well named Page Objects/Methods really helps)*
 
-If there is certain information which you do not want logging then you can create a custom annotation and add it to any method and the parameters will be automatically redacted. For example in the above log
-I didn't want to log out the payment details as this test runs in Production. Therefore I created a new annotation called ```@Secure``` and tagged the ```enterPaymentDetails``` method.
-
-
-```
+##### Custom @Annotations
+You can create pointcuts on custom annotations. Say for example, there is certain data which you do not wish to log, e.g. **credit card details**, you can tag methods using custom annotations. In the above log, the payment details are replaced with ```*``` - ideal when running tests in Production. 
+```java
 @Secure
     public void enterPaymentDetails(String cardNumber, String expiryDate, String cvv) {
-      //todo
+      //using the @Secure annotation to redact cardNumber, expiryDate and cvv value
 
     }
 ```
-
